@@ -51,7 +51,10 @@ class MainActivity : AppCompatActivity() {
                 SongListFragment()
             }
 
-            R.id.action_profile -> { Fragment() }
+            R.id.action_profile -> {
+                if (currentFragment is SongListFragment) return
+                SongListFragment()
+            }
 
             else -> return
         }

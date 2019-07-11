@@ -15,6 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import scb.academy.jinglebell.R
 import scb.academy.jinglebell.adapter.SongAdapter
+import scb.academy.jinglebell.service.ApiManager
 import scb.academy.jinglebell.vo.SongSearchResult
 
 class SongListFragment : Fragment() {
@@ -33,6 +34,8 @@ class SongListFragment : Fragment() {
 
         override fun onResponse(call: Call<SongSearchResult>, response: Response<SongSearchResult>) {
             Log.i("networking", "${response.body()}")
+            val songs = response.body() ?: return
+            songAdapter.submitList(songs.results)
         }
     }
 
@@ -51,6 +54,6 @@ class SongListFragment : Fragment() {
     }
 
     private fun loadSongs()  {
-
+        ApiManager.artistService.songs().enqueue(songListCallback)
     }
 }

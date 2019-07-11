@@ -1,5 +1,6 @@
 package scb.academy.jinglebell.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -54,7 +55,10 @@ class SongItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         tvSongPrice.text = "${song.price} ${song.priceCurrency}"
         ivSongArtwork.setImageUrl(song.artworkUrl)
 
-        itemView.setOnClickListener { onClick(song) }
+        itemView.setOnClickListener {
+            onClick(song)
+            Log.d("✨", song.name)
+        }
     }
 
 }
